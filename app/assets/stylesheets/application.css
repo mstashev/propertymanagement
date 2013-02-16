@@ -11,3 +11,135 @@
  *= require_self
  *= require_tree .
  */
+body{
+  font-famoly: Arial, Helvatica, sans-serif;
+  font-size:13px;
+}
+
+#wrapper{
+  margin: 0 auto;
+  width: 922px;
+}
+
+#header{
+  color:#333;
+  width: 900px;
+  float: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  height:100px;
+  margin: 10px 0px 5px 0px;
+  background: #E7DBD5;
+}
+
+#nav{
+  float: left;
+  width:900px;
+  color:#333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 0px 0px 5px 0px;
+  background: #BD9C8C;
+}
+
+#mainbody{
+  height:350px;
+  width:920px;
+  color:#333;
+  background:#F2F2E6;
+  border:1px solid #ccc;
+  display:inline;
+}
+
+#rightcolumnfull{
+  color:#333;
+  border: 1px solid #ccc;
+  background: #E7DBD5;
+  margin: 0px 5px 5px 0px;
+  height: 350px;
+  width: 195px;
+  float: right;
+}
+
+#rightcolumnhalf{
+  color:#333;
+  border:1px solid #ccc;
+  background:#E7DBD5;
+  margin:0px 5px 5px 0px;
+  height:175px;
+  width:195px;
+  float:right;
+}
+
+#rightcolumnthird{
+  color:#333;
+  border:1px solid #ccc;
+  background:#E7DBD5;
+  margin:0px 5px 5px 0px;
+  height:116px;
+  width:195px;
+  float:right;
+}
+
+#leftcolumn{
+  float:left;
+  color:#333;
+  border:1px solid #ccc;
+  background:#F2F2E6;
+  margin: 0px 0px 5px 0px;
+  height: 350px;
+  width:678px;
+  display: inline;
+}
+
+#leftcolumnall{
+  height:350px;
+  width:920px;
+  float:left;
+  color:#333;
+  border:1px solid #ccc;
+  background:#F2F2E6;
+  display:inline;
+}
+
+#footer{
+  width: 900px;
+  clear:both;
+  color: #333;
+  border: 1px solid #ccc;
+  background:#BD9C8C;
+  margin: 0px 0px 10px 0px;
+  padding: 10px;
+}
+
+#table{
+  background-color:#f5f5f5;
+  padding:5px;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  border: 1px solid #ebebeb;
+}
+
+#table td, #table th{
+  padding:1px 5px;
+}
+
+#table thead{
+  font: normal 15px Helvetica Neue,Helvetica,sans-serif;
+  text-shadow: 0 1px 0 white;
+  color:#999;
+}
+
+#table th{
+  text-align:left;
+  border-bottom:1px solid #fff;
+}
+
+#table td{
+  font-size:14px;
+}
+
+#table td:hover{
+  background-color:#fff;
+}

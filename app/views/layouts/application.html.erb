@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Propertymanagement</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Property Manager</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
 
-<%= yield %>
+  </head>
+  <body>
 
-</body>
+    <!-- Begin Wrapper -->
+    <div id="wrapper">
+
+      <!-- Begin Header -->
+      <div id="header">
+
+        <h1> Michael's Prroerties</h1>
+
+      </div>
+      <!-- End Header -->
+
+      <!-- Begin Navigation -->
+      <div id="nav">
+        
+        <%= link_to 'Home', users_path %>
+        <%= link_to 'Properties', properties_path %>
+        <%= link_to 'Units', units_path %>
+        <%= link_to 'Leases', leases_path %>
+        <%= link_to 'Repair Requests', repairrequests_path %>
+
+      </div>
+      <!-- End Navigation -->
+
+      <!-- Begin Left Column -->
+      <div id="mainbody">
+      	<div id="leftcolumnall">
+          <%= yield %>
+    	</div>
+      </div>
+      <!-- End Left Column -->
+
+      <!-- Begin Footer -->
+      <div id="footer">
+
+        Michael's Properties &copy; 2013
+
+      </div>
+      <!-- End Footer -->
+
+    </div>
+    <!-- End Wrapper -->
+
+  </body>
 </html>
