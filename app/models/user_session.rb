@@ -1,3 +1,3 @@
-class UserSession < ActiveRecord::Base
-  attr_accessible :password, :username
+class UserSession < Authlogic::Session::Base
+  # attr_accessible :title, :body
 end

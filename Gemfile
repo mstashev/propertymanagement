@@ -37,4 +37,6 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
-gem 'authlogic'
+gem "rails3-generators"
+
+gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"

@@ -15,28 +15,41 @@
       <!-- Begin Header -->
       <div id="header">
 
-        <h1> Michael's Prroerties</h1>
+        <h1> Michael's Properties</h1>
 
       </div>
       <!-- End Header -->
 
       <!-- Begin Navigation -->
       <div id="nav">
-        
+        <div id="login">
+          <% if current_user %>
+            <%= link_to "Edit Profile", edit_user_path(:current) %>
+            <%= link_to "Logout", logout_path %>
+          <% else %>
+            <%= link_to "Login", login_path %>/<%= link_to "Register", new_user_path  %>
+          <% end %>
+        </div>
         <%= link_to 'Home', users_path %>
         <%= link_to 'Properties', properties_path %>
         <%= link_to 'Units', units_path %>
         <%= link_to 'Leases', leases_path %>
-        <%= link_to 'Repair Requests', repairrequests_path %>
+        <%= link_to 'Repair Requests', repair_requests_path %>
 
       </div>
       <!-- End Navigation -->
 
       <!-- Begin Left Column -->
       <div id="mainbody">
-      	<div id="leftcolumnall">
+        <div id="leftcolumnall">
+          <% if flash[:error] -%>
+            <div id="error"><%=h flash[:error] %></div>
+          <% end -%>
+          <% if flash[:notice] -%>
+            <div id="notice"><%=h flash[:notice] %></div>
+          <% end -%>
           <%= yield %>
-    	</div>
+    	  </div>
       </div>
       <!-- End Left Column -->
 

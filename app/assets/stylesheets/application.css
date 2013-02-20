@@ -143,3 +143,15 @@ body{
 #table td:hover{
   background-color:#fff;
 }
+
+#error {
+    font-size: 130%;
+    color: red;
+    padding-bottom: 25px;
+}
+
+#notice {
+    font-size: 130%;
+    color: red;
+    padding-bottom: 25px;
+}
