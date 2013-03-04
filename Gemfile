@@ -38,5 +38,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "rails3-generators"
-
+gem "cancan"
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"

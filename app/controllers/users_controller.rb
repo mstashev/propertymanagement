@@ -57,6 +57,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = current_user
+    params[:user][:role_ids] ||= []
+
+    authorize! :assign_roles, @user if params[:user][:assign_roles]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
