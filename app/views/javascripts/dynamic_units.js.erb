@@ -1,0 +1,25 @@
+var units = new Array();
+<% for unit in @units -%>
+  units.push(new Array(<%= unit.property_id %>, '<%=h unit.name %>', <%= unit.id %>));
+<% end -%>
+
+function propertySelected() {
+  property_id = $('property_id').getValue();
+  options = $('unit_id').options;
+  options.length = 1;
+  units.each(function(unit) {
+    if (unit[0] == property_id) {
+      options[options.length] = new Option(unit[1], unit[2]);
+    }
+  });
+  if (options.length == 1) {
+    $('unit_field').hide();
+  } else {
+    $('unit_field').show();
+  }
+}
+
+document.observe('dom:loaded', function() {
+  propertySelected();
+  $('property_id').observe('change', propertySelected);
+});

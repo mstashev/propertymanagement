@@ -25,6 +25,8 @@ Propertymanagement::Application.routes.draw do
 
   match 'logout', :to => 'user_sessions#destroy'
 
+  match ':controller/:action.:format'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

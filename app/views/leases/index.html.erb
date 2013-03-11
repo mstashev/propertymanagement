@@ -1,4 +1,4 @@
-<h1>Listing leases</h1>
+<h1>Lease Listings</h1>
 
 <table>
   <tr>
@@ -15,13 +15,27 @@
     <td><%= lease.start_date %></td>
     <td><%= lease.end_date %></td>
     <td><%= lease.rent %></td>
-    <td><%= link_to 'Show', lease %></td>
-    <td><%= link_to 'Edit', edit_lease_path(lease) %></td>
-    <td><%= link_to 'Destroy', lease, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <% if can? :read, lease %>
+        <%= link_to 'Show', lease %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :manage, lease %>
+        <%= link_to 'Edit', edit_lease_path(lease) %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :manage, lease %>
+        <%= link_to 'Destroy', lease, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <br />
+    <% if can? :manage, lease %>
+      <%= link_to 'New Lease', new_lease_path %>
+    <% end %>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Lease', new_lease_path %>

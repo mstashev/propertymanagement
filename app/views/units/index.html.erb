@@ -13,13 +13,26 @@
   <tr>
     <td><%= unit.name %></td>
     <td><%= unit.square_feet %></td>
-    <td><%= link_to 'Show', unit %></td>
-    <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
-    <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td>
+      <% if can? :read, unit %>
+        <%= link_to 'Show', unit %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :manage, unit %>
+        <%= link_to 'Edit', edit_unit_path(unit) %>
+      <% end %>
+    </td>
+    <td>
+      <% if can? :manage, unit %>
+        <%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Unit', new_unit_path %>
+<% if can? :manage, unit %>
+  <%= link_to 'New Unit', new_unit_path %>
+<% end %>
