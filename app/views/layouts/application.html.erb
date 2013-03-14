@@ -15,7 +15,7 @@
 
       <!-- Begin Header -->
       <div id="header">
-
+        
         <h1> Michael's Properties</h1> 
 
       </div>
@@ -25,6 +25,7 @@
       <div id="nav">
         <div id="login">
           <% if current_user %>
+            <%= link_to "Payments", payments_path %>
             <%= link_to "Edit Profile", edit_user_path(:current) %>
             <%= link_to "Logout", logout_path %>
           <% else %>
@@ -50,6 +51,7 @@
             <div id="notice"><%=h flash[:notice] %></div>
           <% end -%>
           <%= yield %>
+          <br /><br /><br /><br /><br /><br /><br />
     	  </div>
       </div>
       <!-- End Left Column -->

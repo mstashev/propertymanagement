@@ -3,11 +3,11 @@ class RepairRequestsController < ApplicationController
   # GET /repair_requests.json
   def index
     if current_user && (current_user.has_role? :manager) 
-      @repair_requests = RepairRequest.all
-    end 
-    if current_user && (current_user.has_role? :renter) 
-      @repair_requests = RepairRequest.where(:submitter_id => current_user)
-    end
+      if current_user.has_role? :manager
++      @repair_requests = RepairRequest.all
++    else
++      @repair_requests = RepairRequest.where(:submitter_id => current_user)
++    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -47,6 +47,8 @@ class RepairRequestsController < ApplicationController
   def create
     @repair_request = RepairRequest.new(params[:repair_request])
 
+    @repair_request.submitter = current_user
+
     respond_to do |format|
       if @repair_request.save
         format.html { redirect_to @repair_request, notice: 'Repair request was successfully created.' }
@@ -62,6 +64,11 @@ class RepairRequestsController < ApplicationController
   # PUT /repair_requests/1.json
   def update
     @repair_request = RepairRequest.find(params[:id])
+
+    # check to see if the updater is the original submitter or if it's a responder
+    if @repair_request.submitter != current_user
+      @repair_request.responder = current_user
+    end
 
     respond_to do |format|
       if @repair_request.update_attributes(params[:repair_request])

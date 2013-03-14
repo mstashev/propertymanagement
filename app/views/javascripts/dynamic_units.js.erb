@@ -1,9 +1,8 @@
 var units = new Array();
-<% for unit in @units -%>
-  units.push(new Array(<%= unit.property_id %>, '<%=h unit.name %>', <%= unit.id %>));
-<% end -%>
 
 function propertySelected() {
+  var unit_data = $.parseJSON($("#properties_units").val())
+  console.log(unit_data);
   property_id = $('property_id').getValue();
   options = $('unit_id').options;
   options.length = 1;
@@ -20,6 +19,6 @@ function propertySelected() {
 }
 
 document.observe('dom:loaded', function() {
-  propertySelected();
+    $('unit_field').hide();
   $('property_id').observe('change', propertySelected);
 });

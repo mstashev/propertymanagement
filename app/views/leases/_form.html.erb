@@ -1,4 +1,3 @@
-<% javascript 'dynamic_units' %>
 <%= form_for(@lease) do |f| %>
   <% if @lease.errors.any? %>
     <div id="error_explanation">
@@ -12,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag "properties_units", "test", :"data" => Hash[Property.all.map{|p| [p.id, p.units.map{|u| [u.id, u.name]}]}] %>
+  
   <div class="field">
     <%= f.label :start_date %><br />
     <%= f.date_select :start_date %>
@@ -25,14 +26,19 @@
     <%= f.number_field :rent %>
   </div>
   <div class="field">
-    <%= f.label :property %><br />
-    <%= f.collection_select :property_id, Property.find(:all), :id, :name, :prompt => "Select a property" %>
+    <label for="property_id">Property:</label><br />
+    <%= select_tag "property_id", options_for_select(Property.all.collect{ |p| [p.name, p.id]}), :prompt => "Select a property" %>
+  </div>
+  <div id="unit_field" class="field">
+    <label for="lease_unit_id">Unit:</label><br />
+    <%= select_tag "lease[unit_id]" %>
   </div>
   <div class="field">
-    <%= f.label :unit %><br />
-    <%= f.collection_select :unit_id, Unit.find(:all), :id, :name, :prompt => "Select a property" %>
+  <%= f.label :user_id %><br />
+  <%= select_tag "lease[user_id]", options_for_select(User.all.collect{ |u| [u.username, u.id]}), :prompt => "Select a renter" %><br /><br />
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

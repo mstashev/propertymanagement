@@ -2,9 +2,14 @@
 
 <table>
   <tr>
+    <% if can? :manage, Lease %>
+      <th>Username</th>
+    <% end %>
     <th>Start date</th>
     <th>End date</th>
     <th>Rent</th>
+    <th>Unit</th>
+    <th>Property</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +17,16 @@
 
 <% @leases.each do |lease| %>
   <tr>
+    <% if can? :manage, lease %>
+      <td>
+        <%= User.find(lease.user_id).username %>
+      </td>
+    <% end %>
     <td><%= lease.start_date %></td>
     <td><%= lease.end_date %></td>
-    <td><%= lease.rent %></td>
+    <td>$<%= lease.rent %></td>
+    <td><%= lease.unit.try(:name) %></td>
+    <td><%= lease.unit.try(:property).try(:name) %></td>
     <td>
       <% if can? :read, lease %>
         <%= link_to 'Show', lease %>
@@ -30,12 +42,9 @@
         <%= link_to 'Destroy', lease, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </td>
-  </tr>
-  <tr>
-    <br />
-    <% if can? :manage, lease %>
-      <%= link_to 'New Lease', new_lease_path %>
-    <% end %>
-  </tr>
 <% end %>
 </table>
+<br />
+<% if can? :manage, Lease.new %>
+  <%= link_to 'New Lease', new_lease_path %>
+<% end %>

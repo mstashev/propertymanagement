@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Square feet</th>
+    <th>Belongs to Property</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= unit.name %></td>
     <td><%= unit.square_feet %></td>
+    <td><%= unit.property.try(:name) %></td>
     <td>
       <% if can? :read, unit %>
         <%= link_to 'Show', unit %>
@@ -33,6 +35,6 @@
 </table>
 
 <br />
-<% if can? :manage, unit %>
+<% if can? :manage, Unit.new %>
   <%= link_to 'New Unit', new_unit_path %>
 <% end %>

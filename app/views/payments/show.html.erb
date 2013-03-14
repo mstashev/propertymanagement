@@ -1,0 +1,23 @@
+<p>
+  <b>Amount:</b>
+  <%= @payment.amount %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @payment.ip_address %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @payment.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @payment.last_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

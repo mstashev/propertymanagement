@@ -34,4 +34,13 @@ Propertymanagement::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Set the merchant mode
+  ActiveMerchant::Billing::Base.mode = :test
+
+  # Open an ActiveMerchant gateay
+  ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new({
+    :login    =>  '5f8Ygta6D4UP',
+    :password =>  '464sH68yF94w8gGR'
+    })
 end

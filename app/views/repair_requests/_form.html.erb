@@ -11,49 +11,59 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :open_date %><br />
-    <%= f.date_select :open_date %>
-  </div>
-  <div class="field">
-    <%= f.label :close_date %><br />
+
   <% if current_user && (current_user.has_role? :manager) %>
-    <%= f.date_select :close_date %>
+    <div class="field">
+      <%= f.label :open_date %><br />
+      <%= f.date_select :open_date, :disabled => true %>
+    </div>
+  <% elsif current_user.has_role? :renter %>
+    <div class="field">
+      <%= f.label :open_date %><br />
+      <%= f.date_select :open_date %>
+    </div>
   <% end %>
-  <% if current_user && (current_user.has_role? :renter) %>
-    <%= f.date_select :close_date, :disabled => 'disabled' %>
-  <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :request_details %><br />
-    <%= f.text_area :request_details %>
-  </div>
-  <div class="field">
-    <%= f.label :request_response %><br />
+  
+  
   <% if current_user && (current_user.has_role? :manager) %>
-    <%= f.text_field :request_response %>
+    <div class="field">
+      <%= f.label :close_date %><br />
+      <%= f.date_select :close_date %>
+    </div>
+  <% elsif current_user.has_role? :renter %>
+    <div class="field">
+      <%= f.label :close_date %><br />
+      <%= f.date_select :close_date, :disabled => true %>
+    </div>
   <% end %>
-  <% if current_user && (current_user.has_role? :renter) %>
-    <%= f.text_field :request_response, :disabled => 'disabled' %>
-  <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :submitter_id %><br />
+    
+  
   <% if current_user && (current_user.has_role? :manager) %>
-  <%= f.collection_select :submitter_id, User.all.collect, :id, :username, :prompt => "Select a Renter"%>
+    <div class="field">
+        <%= f.label :request_details %><br />
+        <%= f.text_area :request_details, :disabled => true %>
+    </div>  
+  <% elsif current_user.has_role? :renter %>
+    <div class="field">
+      <%= f.label :request_details %><br />
+      <%= f.text_area :request_details %>
+    </div>
   <% end %>
-  <% if current_user && (current_user.has_role? :renter) %>
-    <%= @repair_request.submitter.username %>
+
+
+  <% if current_user && (current_user.has_role? :manager) %>
+    <div class="field">
+      <%= f.label :request_response %><br />
+      <%= f.text_area :request_response %>
+    </div>
+  <% elsif current_user.has_role? :renter %>
+    <div class="field">
+      <%= f.label :request_response %><br />
+      <%= f.text_area :request_response, :disabled => true %>
+    </div>
   <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :responder_id %><br />
-    <% if current_user && (current_user.has_role? :manager) %>
-  <%= f.collection_select :responder_id, User.all.collect, :id, :username, :prompt => "Select a Manager"%>
-  <% end %>
-  <% if current_user && (current_user.has_role? :renter) %>
-    <%= @repair_request.responder.username %>
-  <% end %>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

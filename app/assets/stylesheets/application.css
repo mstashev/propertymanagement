@@ -43,7 +43,7 @@ body{
 }
 
 #mainbody{
-  height:350px;
+  min-height:350px;
   width:920px;
   color:#333;
   background:#F2F2E6;
@@ -56,7 +56,7 @@ body{
   border: 1px solid #ccc;
   background: #E7DBD5;
   margin: 0px 5px 5px 0px;
-  height: 350px;
+  min-height: 350px;
   width: 195px;
   float: right;
 }
@@ -66,7 +66,7 @@ body{
   border:1px solid #ccc;
   background:#E7DBD5;
   margin:0px 5px 5px 0px;
-  height:175px;
+  min-height:175px;
   width:195px;
   float:right;
 }
@@ -76,7 +76,7 @@ body{
   border:1px solid #ccc;
   background:#E7DBD5;
   margin:0px 5px 5px 0px;
-  height:116px;
+  min-height:116px;
   width:195px;
   float:right;
 }
@@ -87,13 +87,13 @@ body{
   border:1px solid #ccc;
   background:#F2F2E6;
   margin: 0px 0px 5px 0px;
-  height: 350px;
+  min-height: 350px;
   width:678px;
   display: inline;
 }
 
 #leftcolumnall{
-  height:350px;
+  min-height:350px;
   width:920px;
   float:left;
   color:#333;

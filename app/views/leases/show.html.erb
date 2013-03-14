@@ -1,4 +1,9 @@
 <p>
+  <b>Username:</b>
+  <%= User.find(@lease.user_id).username %>
+</p>
+
+<p>
   <b>Start date:</b>
   <%= @lease.start_date %>
 </p>
@@ -11,6 +16,16 @@
 <p>
   <b>Rent:</b>
   <%= @lease.rent %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @lease.unit.try(:name) %>
+</p>
+
+<p>
+  <b>Property:</b>
+  <%= @lease.unit.try(:property).try(:name) %>
 </p>
 
 

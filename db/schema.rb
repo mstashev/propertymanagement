@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225222650) do
+ActiveRecord::Schema.define(:version => 20130313203420) do
 
   create_table "leases", :force => true do |t|
     t.date     "start_date"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(:version => 20130225222650) do
     t.integer  "rent"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "unit_id"
+    t.integer  "user_id"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "card_expires_on"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "properties", :force => true do |t|
@@ -61,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130225222650) do
     t.integer  "square_feet"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "property_id"
   end
 
   create_table "users", :force => true do |t|

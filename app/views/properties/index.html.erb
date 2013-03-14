@@ -39,6 +39,6 @@
 </table>
 
 <br />
-<% if can? :manage, property %>
+<% if can? :manage, Property.new %>
   <%= link_to 'New Property', new_property_path %>
 <% end %>
