@@ -8,22 +8,25 @@ class Payment < ActiveRecord::Base
   validates :card_number, :presence => true
   validates :verification_value, :presence => true
 
- validate :validate_card, :on => :create
+  validate :validate_card, :on => :create
 
   belongs_to :user
 
+  has_many :transactions, :class_name => :PaymentTransaction
+
   def make_transaction
     response = GATEWAY.purchase((amount*100), credit_card)
+    transactions.create(:response => response)
     response.success?
   end
 
   private
 
   def credit_card
-    credit_card = ActiveMerchant::Billing::CreditCard.new({
+    @credit_card = ActiveMerchant::Billing::CreditCard.new({
       :first_name => first_name,
       :last_name => last_name,
-      :number => credit_number,
+      :number => card_number,
       :month => card_expires_on.month,
       :year => card_expires_on.year,
       :verification_value => verification_value
@@ -31,8 +34,11 @@ class Payment < ActiveRecord::Base
   end
 
   def validate_card
-    credit_card.errors.full_messages.each do |mesage|
-      error.add_to_base message
+    unless credit_card.valid?  
+      credit_card.errors.full_messages.each do |message|
+        error.add_to_base message
+      end
     end
   end
+
 end
